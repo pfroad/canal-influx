@@ -1,0 +1,27 @@
+ext{
+    depVersion = [
+            vertxV: "3.5.2",
+            logbackV: "1.2.3",
+            micrometerV:"1.0.6",
+            influxV:"2.12"
+    ]
+
+    dependencies = [
+            vertxCore: "io.vertx:vertx-core:${depVersion.vertxV}",
+            vertxWeb: "io.vertx:vertx-web:${depVersion.vertxV}",
+            vertxUnit: "io.vertx:vertx-unit:${depVersion.vertxV}",
+            vertxRxJava: "io.vertx:vertx-rx-java:${depVersion.vertxV}",
+            vertxMySql: "io.vertx:vertx-mysql-postgresql-client:${depVersion.vertxV}",
+            vertxMongo: "io.vertx:vertx-mongo-client:${depVersion.vertxV}",
+
+            // https://mvnrepository.com/artifact/ch.qos.logback/logback-core
+            logbackCore: "ch.qos.logback:logback-core:${depVersion.logbackV}",
+            // https://mvnrepository.com/artifact/ch.qos.logback/logback-classic
+            logbackClassic: "ch.qos.logback:logback-classic:${depVersion.logbackV}",
+            // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+            slf4jApi: "org.slf4j:slf4j-api:1.7.25",
+            // https://mvnrepository.com/artifact/org.influxdb/influxdb-java
+            influx: "org.influxdb:influxdb-java:${depVersion.influxV}",
+            micrometerInflux: "io.micrometer:micrometer-registry-influx:${depVersion.micrometerV}"
+    ]
+}
