@@ -29,7 +29,7 @@ public class InfluxDBService implements CanalMetricsService {
 //    private static final int STEP = 60 * 1000;
     private volatile boolean running = false;
     private MeterRegistry registry;
-    private final ClientInstanceProfiler clientPorfiler;
+    private final ClientInstanceProfiler clientProfiler;
 //    private final ScheduledExecutorService scheduledExecutorService;
 
     public InfluxDBService() {
@@ -65,7 +65,7 @@ public class InfluxDBService implements CanalMetricsService {
         };
 
         this.registry = new InfluxMeterRegistry(config, Clock.SYSTEM);
-        this.clientPorfiler = new InfluxClientInstanceProfiler(registry);
+        this.clientProfiler = new InfluxClientInstanceProfiler(registry);
     }
 
     private static class SingletonHolder {
@@ -81,10 +81,10 @@ public class InfluxDBService implements CanalMetricsService {
         running = true;
 
         try {
-            if (!clientPorfiler.isStart()) {
-                clientPorfiler.start();
+            if (!clientProfiler.isStart()) {
+                clientProfiler.start();
             }
-            profiler().setInstanceProfiler(clientPorfiler);
+            profiler().setInstanceProfiler(clientProfiler);
         } catch (Throwable e) {
             LOGGER.warn("Unable to initialize influx service.", e);
         }
@@ -96,8 +96,8 @@ public class InfluxDBService implements CanalMetricsService {
         running = false;
 
         try {
-            if (clientPorfiler.isStart()) {
-                clientPorfiler.stop();
+            if (clientProfiler.isStart()) {
+                clientProfiler.stop();
             }
 
             profiler().setInstanceProfiler(NOP);
